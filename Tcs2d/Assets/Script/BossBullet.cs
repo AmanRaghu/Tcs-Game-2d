@@ -5,11 +5,7 @@ using UnityEngine;
 public class BossBullet : MonoBehaviour
 {
     public float speed;
-    void Start()
-    {
-        
-    }
-
+    
     void Update()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);

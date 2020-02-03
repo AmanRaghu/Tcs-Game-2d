@@ -1754,6 +1754,22 @@ PrefabInstance:
       propertyPath: healths
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4785860508530485268, guid: f9150d507dac7bc43849f50692c10d3a,
+        type: 3}
+      propertyPath: SpawnPos
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785860508530485268, guid: f9150d507dac7bc43849f50692c10d3a,
+        type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 379175374709355368, guid: 981f27f00035a914fbdba95836273fb3,
+        type: 3}
+    - target: {fileID: 4785860508530485268, guid: f9150d507dac7bc43849f50692c10d3a,
+        type: 3}
+      propertyPath: EnemyCount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4785860508530485270, guid: f9150d507dac7bc43849f50692c10d3a,
         type: 3}
       propertyPath: m_LocalPosition.x

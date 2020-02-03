@@ -14,6 +14,8 @@ public class BossScript : MonoBehaviour
     public float bulletSpeed;
     public Image health;
     public float healths=1f;
+
+   
     void Start()
     {
         StartCoroutine(WaitForEnabel());
@@ -49,6 +51,8 @@ public class BossScript : MonoBehaviour
             this.gameObject.SetActive(false);
             GameManager.Instance.IsGameOver = true;
         }
+
+        
     }
 
     void Shoot()
@@ -70,7 +74,7 @@ public class BossScript : MonoBehaviour
     {
         if (collision.tag == "PlayerBullet")
         {
-            healths -= 0.03f;
+            healths -= 0.01f;
         }
     }
 }
