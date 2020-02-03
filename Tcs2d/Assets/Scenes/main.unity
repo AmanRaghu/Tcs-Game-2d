@@ -330,7 +330,8 @@ MonoBehaviour:
     type: 3}
   MinY: -4.6
   MaxY: 4.3
-  count: 2
+  count: 10
+  SpawnTime: 0
 --- !u!1 &1780468542
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,9 +377,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemeyPrefeb: {fileID: 379175374709355368, guid: 981f27f00035a914fbdba95836273fb3,
     type: 3}
-  Count: 2
+  Count: 10
   MinX: -6.1
   MaxX: 6.2
+  SpawnTime: 0
 --- !u!1001 &985539995983025558
 PrefabInstance:
   m_ObjectHideFlags: 0
