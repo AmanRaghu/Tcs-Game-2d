@@ -18,12 +18,21 @@ public class InstantiateY : MonoBehaviour
     }
     private void Update()
     {
-       
+        if (GameManager.Instance.IsPhase2Active == true)
+        {
+            count = 15;
+        }
+
+        if (GameManager.Instance.BossFight == true)
+        {
+            this.gameObject.SetActive(false);
+        }
 
     }
+    
     void SpawnEnemy()
     {
-        if (count != 0 && playerScript.IsPlayerAlive==true)
+        if (count != 0 && playerScript.IsPlayerAlive==true && GameManager.Instance.BossFight == false)
         {
             SpawnTime = Random.Range(1f, 4f);
             

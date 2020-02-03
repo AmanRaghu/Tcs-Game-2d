@@ -27,5 +27,11 @@ public class EnemyBullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (GameManager.Instance.IsPhase2Active == true)
+        {
+            speed = 3f;
+
+        }
     }
 }

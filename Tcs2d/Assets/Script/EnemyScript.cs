@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour
 
     //EnemyShoot
     public GameObject EnemyBulletPrefeb;
-    public float bullspeed;
+   
     public Transform ShootPos;
 
     public float SpawnTime;
@@ -32,6 +32,12 @@ public class EnemyScript : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, PlayerPos.position, speed * Time.fixedDeltaTime);
         }
         
+
+       if(GameManager.Instance.IsPhase2Active==true)
+        {
+            speed = 1f;
+           
+        }
     }
 
     void EnemyShoot()

@@ -17,9 +17,22 @@ public class InstantiateX : MonoBehaviour
         playerScript = GameObject.FindObjectOfType<PlayerScript>();
         InvokeRepeating("StartEnemySpawn", SpawnTime, Random.Range(2f,5f));
     }
+
+    private void Update()
+    {
+        if (GameManager.Instance.IsPhase2Active == true)
+        {
+            Count = 15;
+        }
+
+        if (GameManager.Instance.BossFight == true)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
     void StartEnemySpawn()
     {
-        if (Count != 0 && playerScript.IsPlayerAlive==true)
+        if (Count != 0 && playerScript.IsPlayerAlive==true && GameManager.Instance.BossFight == false)
         {
             SpawnTime = Random.Range(1f, 3f);
            

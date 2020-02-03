@@ -26,6 +26,10 @@ public class PlayerScript : MonoBehaviour
     public float PlayerHealth = 1f;
     public bool IsPlayerAlive;
 
+    //Score
+    public Text ScoreText;
+    public int Score;
+
     void Start()
     {
         IsPlayerAlive = true;
@@ -36,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         HealthImage.fillAmount = PlayerHealth;
+        ScoreText.text = "Score:" + Score.ToString();
         //move Player
 
         Movement.x = Input.GetAxisRaw("Horizontal");
@@ -71,12 +76,27 @@ public class PlayerScript : MonoBehaviour
             IsPlayerAlive = false;
             gameObject.SetActive(false);
         }
+
+
+
+        //Check For Phase 2
+        if (Score == 20)
+        {
+            GameManager.Instance.IsPhase2Active = true;
+        }
+
+        if (Score == 40)
+        {
+            GameManager.Instance.IsPhase2Active = false;
+            GameManager.Instance.BossFight = true;
+        }
     }
 
     void Shoot()
     {
         GameObject bull = Instantiate(PlayerBulletPrefeb, ShootPosition.position, Quaternion.identity);
         bull.GetComponent<Rigidbody2D>().AddForce(ShootPosition.up * BulletSpeed * Time.fixedDeltaTime);
+        Destroy(bull, 2f);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +104,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.tag == "EnemyBullet")
         {
             PlayerHealth -= 0.05f;
+            Destroy(collision.gameObject);
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
@@ -91,7 +112,9 @@ public class PlayerScript : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             PlayerHealth -= 0.2f;
+            Destroy(collision.gameObject);
         }
     }
 
+   
 }
