@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
     //For Movement
     public float speed;
     private Rigidbody2D rb;
     Vector2 mousePos;
+    Vector2 Movement;
 
     //For clamping
     public float MaxX;
@@ -20,31 +21,27 @@ public class PlayerScript : MonoBehaviour
     public Transform ShootPosition;
     public float BulletSpeed;
 
+    //health
+    public Image HealthImage;
+    public float PlayerHealth = 1f;
+    public bool IsPlayerAlive;
+
     void Start()
     {
+        IsPlayerAlive = true;
         rb = GetComponent<Rigidbody2D>();
     }
 
     
     void Update()
     {
+        HealthImage.fillAmount = PlayerHealth;
         //move Player
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector2.up *speed* Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-        }
+
+        Movement.x = Input.GetAxisRaw("Horizontal");
+        Movement.y = Input.GetAxisRaw("Vertical");
+        rb.MovePosition(rb.position + Movement * speed * Time.deltaTime);
+
         //
 
         //Rotate with moouse
@@ -65,6 +62,15 @@ public class PlayerScript : MonoBehaviour
             Shoot();
         }
         //
+
+
+        //Check If Player Alive 
+        if (PlayerHealth <= 0f)
+        {
+            GameManager.Instance.IsGameOver = true;
+            IsPlayerAlive = false;
+            gameObject.SetActive(false);
+        }
     }
 
     void Shoot()
@@ -73,5 +79,19 @@ public class PlayerScript : MonoBehaviour
         bull.GetComponent<Rigidbody2D>().AddForce(ShootPosition.up * BulletSpeed * Time.fixedDeltaTime);
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "EnemyBullet")
+        {
+            PlayerHealth -= 0.05f;
+        }
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Enemy")
+        {
+            PlayerHealth -= 0.2f;
+        }
+    }
 
 }

@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  MaxX: 6.39
-  MinX: -6.13
-  MaxY: 4.49
-  MinY: -4.53
+  MaxX: 8.07
+  MinX: -7.75
+  MaxY: 4.47
+  MinY: -4.37
   PlayerBulletPrefeb: {fileID: 3441743153183487644, guid: 2415896cf1e5c064785d82595e9cbb04,
     type: 3}
   ShootPosition: {fileID: 985539996731606980}

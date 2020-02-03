@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class InstantiateY : MonoBehaviour
 {
+    private PlayerScript playerScript;
     public GameObject EnemyPrefeb;
     public float MinY;
     public float MaxY;
     public int count;
     public float SpawnTime;
-    public float SpawnRate;
+    
     void Start()
     {
-       
-        InvokeRepeating("SpawnEnemy", SpawnTime, SpawnRate);
+        playerScript = GameObject.FindObjectOfType<PlayerScript>();
+        InvokeRepeating("SpawnEnemy", SpawnTime, Random.Range(1f,4f));
     }
     private void Update()
     {
@@ -22,10 +23,10 @@ public class InstantiateY : MonoBehaviour
     }
     void SpawnEnemy()
     {
-        if (count != 0)
+        if (count != 0 && playerScript.IsPlayerAlive==true)
         {
             SpawnTime = Random.Range(1f, 4f);
-            SpawnRate = Random.Range(1f, 3f);
+            
             Vector2 SpawnY = new Vector2(transform.position.x, Random.Range(MinY, MaxY));
           GameObject enemy = Instantiate(EnemyPrefeb, SpawnY, Quaternion.identity);
             count--;

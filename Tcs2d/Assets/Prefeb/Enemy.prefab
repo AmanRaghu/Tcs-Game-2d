@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be162587355d0864bbe5c15c1b2ed809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   PlayerPos: {fileID: 0}
   EnemyBulletPrefeb: {fileID: 6995767243918617543, guid: 2d401b3ec6de913479b8713d232ac455,
     type: 3}

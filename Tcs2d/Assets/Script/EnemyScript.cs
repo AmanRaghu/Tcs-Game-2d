@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    private PlayerScript playerScript;   
     //Enenmy Move
     public float speed;
-    public Transform PlayerPos;
+
+    [SerializeField]
+    private Transform PlayerPos;
 
     //EnemyShoot
     public GameObject EnemyBulletPrefeb;
@@ -18,21 +21,25 @@ public class EnemyScript : MonoBehaviour
     {
         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("EnemyShoot", SpawnTime, 5f);
-    
+        playerScript = GameObject.FindObjectOfType<PlayerScript>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Vector2.Distance(transform.position, PlayerPos.position) > 2)
-        {
-           transform.position = Vector2.MoveTowards(transform.position, PlayerPos.position, speed * Time.fixedDeltaTime);
+       // enemy move
+       if (Vector2.Distance(transform.position, PlayerPos.position) > 2 && playerScript.IsPlayerAlive==true)
+       {
+            transform.position = Vector2.MoveTowards(transform.position, PlayerPos.position, speed * Time.fixedDeltaTime);
         }
+        
     }
 
     void EnemyShoot()
     {
-        SpawnTime = Random.Range(1f, 5f);
-        GameObject bull = Instantiate(EnemyBulletPrefeb, ShootPos.position, Quaternion.identity);
-       
+        if (GameManager.Instance.IsGameOver == false)
+        {
+            SpawnTime = Random.Range(1f, 5f);
+            GameObject bull = Instantiate(EnemyBulletPrefeb, ShootPos.position, Quaternion.identity);
+        }
     }
 }
